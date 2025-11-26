@@ -2,7 +2,7 @@
 &COMMENT Modul (src/dat) with INI line and PTP HOME at start and end of Program
 DEF Pared_y_tubo ( )
 ; Este ejemplo se desarrolló para evaluar la capacidad de realizar figuras 
-; para pruebas de soldadura.
+; simples para pruebas de soldadura.
 ;FOLD INI
   ;FOLD BASISTECH INI
     GLOBAL INTERRUPT DECL 3 WHEN $STOPMESS==TRUE DO IR_STOPM ( )
