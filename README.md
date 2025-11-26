@@ -1,6 +1,6 @@
 #  CCTVal KUKA
 
-Programas y librerías desarrolladas para el control de brazos robóticos KUKA, para aplicación de procesos por manufactura aditiva WAAM, como parte del proyecto: "Optimización y Validación de Componentes Navales mediante Manufactura Aditiva con 
+Programas y librerías desarrolladas para el control de brazos robóticos KUKA, para aplicación de procesos por manufactura aditiva WAAM, en lenguaje KRL, como parte del proyecto: "Optimización y Validación de Componentes Navales mediante Manufactura Aditiva con 
 Procesos WAAM: Implicancias Tecnológicas"
 
 # Referencias:
