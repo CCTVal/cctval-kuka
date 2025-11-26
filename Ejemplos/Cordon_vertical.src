@@ -1,7 +1,7 @@
 &ACCESS RVO1
 &COMMENT 
 DEF Cordon_vertical ( )
-; Programa desarrollado por Mauricio Solís para pruebas de soldadura en el CIMA.
+; Programa desarrollado por Mauricio Solï¿½s para pruebas de soldadura en el CIMA.
 
 DECL REAL dx, dy, dz, r_speed
 DECL E6POS p0_rel
@@ -27,13 +27,13 @@ BAS(#PTP_PARAMS,100)
 PTP Xp0 
 ;ENDFOLD
 
-p0_rel = Xp0; Punto inicial (inicio del cordón) a 12 mm de la superficie,
-; para dar espacio al cordón de soldadura.
-; Este es el único punto que se le enseña al robot (touch up).
+p0_rel = Xp0; Punto inicial (inicio del cordï¿½n) a 12 mm de la superficie,
+; para dar espacio al cordï¿½n de soldadura.
+; Este es el ï¿½nico punto que se le enseï¿½a al robot (touch up).
 
 r_speed = 0.005; Velocidad de avance (m/s)
 
-; Desfases aplicados al punto inicial, utilzar si se requiere un nuevo cordón a 
+; Desfases aplicados al punto inicial, utilzar si se requiere un nuevo cordï¿½n a 
 ; cierta distancia de los ya realizados.
 dx = 0
 dy = 0
@@ -46,12 +46,15 @@ p0_rel.z = Xp0.z + dz
 ;PTP p0_rel
 
 HALT ;Detener justo antes de comenzar la soldadura para que el operador de la 
-; señal de partida.
+; seï¿½al de partida.
 
 cordon_vert(p0_rel, 80, r_speed, 2, 1)
 
 END
 
+; En esta funciï¿½n, para cada cordï¿½n, se realiza un trayecto de ida y otro de 
+; vuelta. Lo que equivale en la prï¿½ctica a dos cordones por cada cordï¿½n 
+; pasado como argumento en num_cor.
 DEF cordon_vert(origen:IN, len:IN, speed:IN, dz:IN, num_cor:IN)
   DECL E6POS origen
   DECL REAL len
@@ -65,8 +68,8 @@ DEF cordon_vert(origen:IN, len:IN, speed:IN, dz:IN, num_cor:IN)
   DECL INT N
   
   ori_up.z = ori_up.z + 150; Altura de seguridad para que la torcha se mueva 
-  ; horizontalmente sin obstáculos.
-  fin.y = fin.y - len; Cambiar el signo de la operación para realizar el cordón 
+  ; horizontalmente sin obstï¿½culos.
+  fin.y = fin.y - len; Cambiar el signo de la operaciï¿½n para realizar el cordï¿½n 
   ; en el sentido opuesto.
   fin_up = fin
   fin_up.z = fin_up.z + 150
@@ -89,9 +92,13 @@ DEF cordon_vert(origen:IN, len:IN, speed:IN, dz:IN, num_cor:IN)
     
     BAS(#VEL_CP, 0.2)
     LIN fin_up
-    HALT
+    HALT; Espera seï¿½al del operador para continuar. Aquï¿½ se verifica con pistola
+    ; de temperatura que esta haya bajado de 100 ï¿½C aprox. para continuar con el
+    ; siguiente cordï¿½n.
+    ; En la prï¿½ctica, nosotros detuvimos el programa acï¿½, cambiamos el offset 
+    ; con dx, dy, dz, y comenzamos de nuevo.
     
-    ; Eleva torcha para realizar cordón de vuelta sobre el anterior.
+    ; Eleva torcha para realizar cordï¿½n de vuelta sobre el anterior.
     ori.z = origen.z + (2*N + 1) * dz
     fin.z = final.z + (2*N + 1) * dz
     
